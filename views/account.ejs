@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %> | Marketing Boost</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <main class="content">
+      <section class="panel">
+        <h1>Profil de <%= user ? user.name : '' %></h1>
+        <p>Mettez à jour vos informations personnelles et vos préférences de notification.</p>
+      </section>
+    </main>
+  </body>
+</html>

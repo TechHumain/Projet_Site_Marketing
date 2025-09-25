@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="logo" aria-label="Logo">
+    <span class="logo-mark">⚡</span>
+    <span class="logo-text">Marketing Boost</span>
+  </div>
+  <nav class="nav-links" aria-label="Navigation principale">
+    <a href="/" class="nav-link<%= currentPath === '/' ? ' active' : '' %>">Accueil</a>
+    <a href="/dashboard" class="nav-link<%= currentPath === '/dashboard' ? ' active' : '' %>">Dashboard</a>
+    <a href="/account" class="nav-link<%= currentPath === '/account' ? ' active' : '' %>">Mon compte</a>
+  </nav>
+  <div class="header-actions">
+    <% if (user) { %>
+      <form method="post" action="/logout">
+        <button type="submit" class="button secondary">Se déconnecter</button>
+      </form>
+    <% } else { %>
+      <a href="/login" class="button primary">Se connecter</a>
+    <% } %>
+  </div>
+</header>
