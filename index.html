@@ -7,75 +7,220 @@
     <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
   <body>
-    <header>
-      <div class="header-inner">
-        <div class="branding">
-          <h1>Audit Marketing</h1>
-          <p>Optimisez vos campagnes digitales grâce à nos analyses sur mesure.</p>
+    <div class="page-wrapper">
+      <header class="site-header" data-header>
+        <div class="header-inner">
+          <div class="branding">
+            <a class="branding__link" href="#top" aria-label="Retour à l'accueil">
+              <span class="branding__logo" aria-hidden="true">AM</span>
+              <div>
+                <h1>Audit Marketing</h1>
+                <p>Visibilité et performance digitale, sans approximation.</p>
+              </div>
+            </a>
+          </div>
+          <nav class="primary-nav" aria-label="Navigation principale">
+            <ul>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#methodologie">Méthodologie</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a class="btn-secondary" href="#contact">Nous rencontrer</a>
+          </nav>
         </div>
-        <nav aria-label="Navigation principale">
-          <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#methodologie">Méthodologie</a></li>
-            <li><a href="#contact">Contact</a></li>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="hero__background" aria-hidden="true">
+          <div class="hero__shape hero__shape--one"></div>
+          <div class="hero__shape hero__shape--two"></div>
+        </div>
+        <div class="hero__content">
+          <p class="hero__eyebrow">Audit marketing premium</p>
+          <h2>Identifiez vos leviers de croissance en moins de 7 jours</h2>
+          <p>
+            Nos experts data, acquisition et CRM analysent l'intégralité de votre expérience client pour révéler les actions à
+            plus fort impact. Profitez d'une feuille de route priorisée, prête à activer par vos équipes.
+          </p>
+          <div class="hero__actions">
+            <a class="btn-primary" href="#contact">Demander un audit personnalisé</a>
+            <a class="btn-outline" href="#services">Explorer nos expertises</a>
+          </div>
+          <dl class="hero-stats" aria-label="Chiffres clés de nos accompagnements">
+            <div>
+              <dt>+37%</dt>
+              <dd>de ROI moyen après 90 jours</dd>
+            </div>
+            <div>
+              <dt>92%</dt>
+              <dd>de clients renouvellent la mission</dd>
+            </div>
+            <div>
+              <dt>4,9/5</dt>
+              <dd>satisfaction moyenne des équipes</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="trust-bar" aria-label="Références clients">
+        <div class="trust-bar__inner">
+          <span class="trust-bar__eyebrow">Ils nous font confiance</span>
+          <ul class="trust-badges">
+            <li>Scale-ups SaaS</li>
+            <li>E-commerce premium</li>
+            <li>Banques &amp; assurances</li>
+            <li>Acteurs B2B industriels</li>
           </ul>
-        </nav>
-      </div>
-    </header>
-
-    <section class="hero">
-      <h2>Identifiez vos leviers de croissance en moins de 7 jours</h2>
-      <p>
-        Notre équipe réalise un audit complet de vos assets marketing pour détecter les opportunités
-        d'amélioration rapide. Recevez un rapport clair, actionnable et priorisé pour booster votre retour sur investissement.
-      </p>
-      <a class="btn-primary" href="#contact">Demander un audit personnalisé</a>
-    </section>
-
-    <main>
-      <section id="services" class="legal-page-section">
-        <h2>Ce que nous analysons</h2>
-        <p>
-          Nous examinons vos campagnes d'acquisition payantes, vos tunnels de conversion et vos performances CRM pour
-          construire un plan d'optimisation global.
-        </p>
-        <ul>
-          <li>Structure et ciblage de vos campagnes publicitaires.</li>
-          <li>Performance de vos pages d'atterrissage et de vos séquences e-mail.</li>
-          <li>Qualité des données de suivi et gouvernance analytics.</li>
-        </ul>
+        </div>
       </section>
 
-      <section id="methodologie" class="legal-page-section">
-        <h2>Notre méthodologie</h2>
-        <p>
-          Nous combinons benchmarks sectoriels, analyses quantitatives et entretiens avec vos équipes pour livrer un plan
-          priorisé et directement activable. Chaque audit inclut un accompagnement de restitution pour garantir
-          l'appropriation des recommandations.
-        </p>
-      </section>
+      <main>
+        <section id="services" class="section">
+          <div class="section__header">
+            <h2>Ce que nous analysons</h2>
+            <p>
+              Une vision panoramique de vos performances marketing pour orchestrer des campagnes efficaces, rentables et
+              cohérentes sur l'ensemble du parcours client.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" role="img" focusable="false"><path d="M6 6h20v4H6zm3 8h14v4H9zm-3 8h20v4H6z" fill="currentColor"/></svg>
+              </div>
+              <h3>Campagnes d'acquisition</h3>
+              <p>
+                Audit de vos structures de comptes, ciblages et créations. Benchmark sectoriel pour révéler les opportunités
+                inexploitées.
+              </p>
+              <ul>
+                <li>Analyse des plateformes payantes</li>
+                <li>Refonte des audiences &amp; segments</li>
+                <li>Optimisation des messages clés</li>
+              </ul>
+            </article>
+            <article class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" role="img" focusable="false"><path d="M4 8l12 8 12-8-12-6zM4 12v12l12 6V18zM28 12v12l-12 6V18z" fill="currentColor"/></svg>
+              </div>
+              <h3>Parcours &amp; conversion</h3>
+              <p>
+                Étude comportementale de vos tunnels, tests UX et scoring des quick wins pour augmenter vos taux de
+                conversion.
+              </p>
+              <ul>
+                <li>Heatmaps et analytics avancés</li>
+                <li>Audit CRO des landing pages</li>
+                <li>Scénarios d'A/B testing priorisés</li>
+              </ul>
+            </article>
+            <article class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" role="img" focusable="false"><path d="M16 4l-6 6h4v6h4v-6h4zM6 20h4v4H6zm8 0h4v4h-4zm8 0h4v4h-4z" fill="currentColor"/></svg>
+              </div>
+              <h3>Data &amp; fidélisation</h3>
+              <p>
+                Cartographie de vos flux de données, qualité CRM et automatisations pour booster la rétention et la LTV.
+              </p>
+              <ul>
+                <li>Diagnostic des tags &amp; pixels</li>
+                <li>Revue des scénarios CRM</li>
+                <li>Plan d'action gouvernance data</li>
+              </ul>
+            </article>
+          </div>
+        </section>
 
-      <section id="contact" class="legal-page-section">
-        <h2>Parlons de votre prochaine étape</h2>
-        <p>
-          Envoyez-nous un message à <a href="mailto:contact@audit-marketing.fr">contact@audit-marketing.fr</a> pour démarrer.
-          Nous revenons vers vous sous 24 heures ouvrées.
-        </p>
-      </section>
-    </main>
+        <section id="methodologie" class="section section--alt">
+          <div class="section__header">
+            <h2>Notre méthodologie</h2>
+            <p>
+              Un processus éprouvé qui combine stratégie, data et accompagnement humain pour garantir l'appropriation des
+              recommandations par vos équipes.
+            </p>
+          </div>
+          <div class="method-steps">
+            <article class="method-step">
+              <span class="method-step__number">01</span>
+              <h3>Immersion &amp; cadrage</h3>
+              <p>
+                Ateliers de découverte, cadrage des KPIs et collecte des accès pour aligner l'audit sur vos priorités business.
+              </p>
+            </article>
+            <article class="method-step">
+              <span class="method-step__number">02</span>
+              <h3>Analyse &amp; scoring</h3>
+              <p>
+                Diagnostic data-driven, scoring des opportunités et chiffrage d'impact pour identifier les actions à ROI rapide.
+              </p>
+            </article>
+            <article class="method-step">
+              <span class="method-step__number">03</span>
+              <h3>Activation &amp; coaching</h3>
+              <p>
+                Restitution stratégique, sessions de coaching et suivi des mises en œuvre pour ancrer la performance dans la
+                durée.
+              </p>
+            </article>
+          </div>
+        </section>
 
-    <footer class="site-footer">
-      <div class="footer-content">
-        <nav aria-label="Liens légaux">
-          <a href="/legal/mentions-legales/">Mentions légales</a>
-          <a href="/legal/terms/">Conditions d'utilisation</a>
-          <a href="/legal/privacy/">Politique de confidentialité</a>
-          <a href="/legal/cookies/">Politique cookies</a>
-        </nav>
-        <button type="button" class="manage-cookies">Gérer mes cookies</button>
-      </div>
-      <p>&copy; 2024 Audit Marketing. Tous droits réservés.</p>
-    </footer>
+        <section class="section">
+          <div class="highlight-card" role="complementary">
+            <div>
+              <h2>Un accompagnement pensé pour vos équipes</h2>
+              <p>
+                Des livrables synthétiques, des recommandations priorisées et des ateliers opérationnels pour accélérer votre
+                passage à l'action.
+              </p>
+            </div>
+            <ul>
+              <li>Tableaux de bord prêts à l'emploi</li>
+              <li>Templates de campagnes &amp; automations</li>
+              <li>Suivi mensuel sur mesure</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="contact" class="section section--cta">
+          <div class="section__header">
+            <h2>Parlons de votre prochaine étape</h2>
+            <p>
+              Programmez un échange de 30 minutes avec un consultant senior pour identifier comment l'audit peut soutenir vos
+              objectifs de croissance.
+            </p>
+          </div>
+          <div class="cta-panel">
+            <div class="cta-panel__details">
+              <p>
+                Écrivez-nous à <a href="mailto:contact@audit-marketing.fr">contact@audit-marketing.fr</a> ou choisissez un créneau
+                dans notre agenda partagé. Nous revenons vers vous sous 24h ouvrées.
+              </p>
+              <ul>
+                <li>Diagnostic gratuit de vos enjeux actuels</li>
+                <li>Projection de gains personnalisée</li>
+                <li>Accès à un plan d'action priorisé</li>
+              </ul>
+            </div>
+            <a class="btn-primary" href="mailto:contact@audit-marketing.fr">Planifier un rendez-vous</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <nav aria-label="Liens légaux">
+            <a href="/legal/mentions-legales/">Mentions légales</a>
+            <a href="/legal/terms/">Conditions d'utilisation</a>
+            <a href="/legal/privacy/">Politique de confidentialité</a>
+            <a href="/legal/cookies/">Politique cookies</a>
+          </nav>
+          <button type="button" class="manage-cookies">Gérer mes cookies</button>
+        </div>
+        <p>&copy; 2024 Audit Marketing. Tous droits réservés.</p>
+      </footer>
+    </div>
 
     <div class="cookie-banner" role="dialog" aria-modal="true" aria-live="polite">
       <h2 class="cookie-banner__title" data-banner-title>Nous respectons votre vie privée</h2>
