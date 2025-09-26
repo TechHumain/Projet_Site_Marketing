@@ -31,7 +31,7 @@
   }
 
   body {
-    @apply min-h-screen bg-muted text-text antialiased;
+    @apply min-h-screen bg-section-fade text-text antialiased;
   }
 
   img,
@@ -64,13 +64,17 @@
   }
 
   a {
-    @apply text-inherit no-underline;
+    @apply text-inherit no-underline transition-colors duration-200;
   }
 }
 
 @layer utilities {
   .shadow-soft {
     @apply shadow-md;
+  }
+
+  .card-glow {
+    box-shadow: 0 18px 45px -30px rgba(15, 23, 42, 0.45);
   }
 }
 
