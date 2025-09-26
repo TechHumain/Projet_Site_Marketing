@@ -222,6 +222,6 @@
   }
 }
 
-:where(button, a).[class*="focus-visible"] {
+:where(button, a)[class*="focus-visible"] {
   @apply ring-2 ring-primary ring-offset-2;
 }
