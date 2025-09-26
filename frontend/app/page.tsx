@@ -2,14 +2,28 @@ import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 
-const features = [
+const metrics = [
+  { value: "+37%", label: "de ROI moyen après 90 jours" },
+  { value: "92%", label: "de clients renouvellent la mission" },
+  { value: "4,9/5", label: "de satisfaction équipe et direction" },
+];
+
+const trustLogos = ["Alan", "BackMarket", "Qonto", "Mirakl", "Swile"];
+
+const services = [
   {
-    title: "Score Global",
-    description: "Note instantanée avec indicateurs visuels.",
+    title: "Campagnes d'acquisition",
+    description:
+      "Audit de vos comptes ads, ciblages, créations et landing pages pour révéler les leviers de croissance rapides.",
+    bullets: [
+      "Analyse des plateformes payantes et mix média",
+      "Refonte des audiences & segments prioritaires",
+      "Optimisation des messages et visuels clés",
+    ],
     icon: (
       <svg
-        className="h-8 w-8 text-primary"
-        viewBox="0 0 24 24"
+        className="h-10 w-10 text-primary"
+        viewBox="0 0 32 32"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -17,17 +31,25 @@ const features = [
         strokeLinejoin="round"
         aria-hidden="true"
       >
-        <path d="M4 12.5L9 17.5L20 6.5" />
+        <path d="M4 6h24v4H4z" />
+        <path d="M4 14h16v4H4z" />
+        <path d="M4 22h24v4H4z" />
       </svg>
     ),
   },
   {
-    title: "Export PDF",
-    description: "Rapport horodaté prêt à partager.",
+    title: "Parcours & conversion",
+    description:
+      "Étude comportementale de vos tunnels, UX research et scoring des quick wins pour améliorer chaque étape.",
+    bullets: [
+      "Heatmaps, analytics & lecture des funnels",
+      "CRO des landing pages et pages produit",
+      "Backlog d'expérimentations priorisé",
+    ],
     icon: (
       <svg
-        className="h-8 w-8 text-primary"
-        viewBox="0 0 24 24"
+        className="h-10 w-10 text-primary"
+        viewBox="0 0 32 32"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -35,21 +57,25 @@ const features = [
         strokeLinejoin="round"
         aria-hidden="true"
       >
-        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-        <path d="M14 2v6h6" />
-        <path d="M12 18h4" />
-        <path d="M8 14h8" />
-        <path d="M8 10h4" />
+        <path d="M4 8l12 8 12-8-12-6z" />
+        <path d="M4 12v12l12 6V18z" />
+        <path d="M28 12v12l-12 6V18z" />
       </svg>
     ),
   },
   {
-    title: "Historique",
-    description: "Suivez l’évolution de vos analyses.",
+    title: "CRM & fidélisation",
+    description:
+      "Cartographiez vos scénarios, segmentez vos bases et automatisez les messages à forte valeur pour chaque persona.",
+    bullets: [
+      "Diagnostic des scénarios transactionnels & relationnels",
+      "Scoring clients, RFM et segments dynamiques",
+      "Playbooks d'automations & contenus personnalisés",
+    ],
     icon: (
       <svg
-        className="h-8 w-8 text-primary"
-        viewBox="0 0 24 24"
+        className="h-10 w-10 text-primary"
+        viewBox="0 0 32 32"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -57,64 +83,237 @@ const features = [
         strokeLinejoin="round"
         aria-hidden="true"
       >
-        <path d="M12 8v4l3 3" />
-        <path d="M21 12a9 9 0 11-9-9" />
-        <path d="M21 5v7h-7" />
+        <path d="M6 6h20v20H6z" />
+        <path d="M16 12v8" />
+        <path d="M12 16h8" />
       </svg>
     ),
   },
 ];
 
+const methodology = [
+  {
+    step: "01",
+    title: "Kick-off & cadrage",
+    subtitle: "Objectifs business & organisation",
+    description:
+      "Immersion dans votre contexte, récupération des accès et cadrage des KPI pour aligner toutes les parties prenantes.",
+    deliverable: "Checklist des accès + feuille de route d'audit",
+  },
+  {
+    step: "02",
+    title: "Analyse 360°",
+    subtitle: "Data, acquisition, CRM & conformité",
+    description:
+      "Audit croisé de vos comptes ads, analytics, CRM et assets créatifs avec scoring des opportunités par impact business.",
+    deliverable: "Tableau de bord interactif + benchmark sectoriel",
+  },
+  {
+    step: "03",
+    title: "Restitution & activation",
+    subtitle: "Priorisation & accompagnement",
+    description:
+      "Atelier de restitution auprès de vos équipes, co-construction du plan d'actions et accompagnement sur la mise en œuvre.",
+    deliverable: "Roadmap priorisée sur 90 jours + coaching des équipes",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Nous avons réduit de 32 % notre coût d'acquisition tout en améliorant la conformité de nos campagnes display. Les livrables sont clairs et directement actionnables.",
+    author: "Claire Dupont",
+    role: "Head of Growth – AssurOne",
+  },
+  {
+    quote:
+      "PubLégalFR a transformé notre stratégie CRM. Nous avons enfin une vision segmentée de notre base et des scénarios automatisés qui convertissent.",
+    author: "Louis Martin",
+    role: "CMO – RetailUp",
+  },
+];
+
 export default function Home() {
   return (
-    <div className="pb-20">
-      <section className="container flex flex-col items-center py-16 text-center">
-        <div className="flex max-w-3xl flex-col items-center gap-6">
-          <Badge className="bg-primary/10 text-primary">Conformité publicitaire instantanée</Badge>
-          <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
-            Analysez la conformité de vos <span className="text-primary">publicités</span> en 60 secondes
-          </h1>
-          <p className="text-lg text-slate-600">
-            Automatisez le contrôle de vos assets marketing : uploadez votre landing page, recevez un rapport clair, actionnable et prêt à partager.
-          </p>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:justify-center">
-            <Button href="/analyser" size="lg" className="w-full sm:w-auto">
-              Analyser une landing page
-            </Button>
-            <Button
-              href="/historique"
-              size="lg"
-              variant="secondary"
-              className="w-full sm:w-auto"
-            >
-              Voir un exemple de rapport
-            </Button>
+    <div className="space-y-24 pb-24">
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-hero-radial" aria-hidden="true" />
+        <div className="container relative flex flex-col items-center gap-16 py-24 text-center">
+          <div className="flex max-w-4xl flex-col items-center gap-6">
+            <Badge className="bg-primary/10 text-primary">Audit marketing premium</Badge>
+            <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+              Identifiez vos leviers de croissance en moins de 7 jours
+            </h1>
+            <p className="max-w-3xl text-lg text-slate-600">
+              Nos experts data, acquisition et CRM analysent l'intégralité de votre expérience client pour révéler les actions
+              à plus fort impact. Vous repartez avec une feuille de route priorisée, prête à activer par vos équipes.
+            </p>
+            <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:justify-center">
+              <Button href="/analyser" size="lg" className="w-full sm:w-auto">
+                Demander un audit personnalisé
+              </Button>
+              <Button
+                href="/historique"
+                size="lg"
+                variant="secondary"
+                className="w-full sm:w-auto"
+              >
+                Découvrir un rapport type
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid w-full gap-6 sm:grid-cols-3">
+            {metrics.map((metric) => (
+              <Card key={metric.label} className="bg-white/80 text-left">
+                <div className="flex flex-col gap-2">
+                  <span className="text-3xl font-semibold text-primary">{metric.value}</span>
+                  <p className="text-sm text-slate-600">{metric.label}</p>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="container py-12">
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3 md:gap-8">
-          {features.map((feature) => (
-            <Card key={feature.title} className="text-left">
+      <section className="container" aria-label="Références clients">
+        <div className="flex flex-col gap-6 rounded-3xl border border-border/70 bg-white/90 px-8 py-10 shadow-sm backdrop-blur">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">
+              Ils nous font confiance
+            </span>
+            <p className="text-sm text-slate-500">+120 projets accompagnés sur les 24 derniers mois</p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-8 text-lg font-medium text-slate-600">
+            {trustLogos.map((logo) => (
+              <span key={logo} className="text-slate-500">
+                {logo}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="container space-y-12">
+        <div className="flex flex-col gap-4 text-center">
+          <Badge className="self-center bg-accent/15 text-primary">Expertises</Badge>
+          <h2 className="text-3xl font-semibold text-text">Ce que nous analysons</h2>
+          <p className="mx-auto max-w-3xl text-base text-slate-600">
+            Une vision panoramique de vos performances marketing pour orchestrer des campagnes efficaces, rentables et
+            cohérentes sur l’ensemble du parcours client.
+          </p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-3">
+          {services.map((service) => (
+            <Card key={service.title} className="flex h-full flex-col gap-6 text-left">
+              <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+                {service.icon}
+              </span>
+              <div className="flex flex-col gap-3">
+                <h3 className="text-xl font-semibold text-text">{service.title}</h3>
+                <p className="text-sm text-slate-600">{service.description}</p>
+              </div>
+              <ul className="mt-auto space-y-2 text-sm text-slate-600">
+                {service.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-2">
+                    <span className="mt-1 inline-flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section id="methodologie" className="container space-y-12">
+        <div className="flex flex-col gap-4 text-center">
+          <Badge className="self-center bg-primary/10 text-primary">Méthodologie</Badge>
+          <h2 className="text-3xl font-semibold text-text">Un accompagnement senior de bout en bout</h2>
+          <p className="mx-auto max-w-3xl text-base text-slate-600">
+            De l’immersion initiale à l’activation, nous orchestrons chaque étape pour accélérer vos décisions et sécuriser la
+            conformité de vos campagnes.
+          </p>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {methodology.map((step) => (
+            <Card key={step.step} className="flex h-full flex-col gap-5 text-left">
+              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-primary/70">
+                Étape {step.step}
+              </span>
+              <div className="space-y-2">
+                <h3 className="text-xl font-semibold text-text">{step.title}</h3>
+                <p className="text-sm font-medium text-primary/80">{step.subtitle}</p>
+              </div>
+              <p className="text-sm text-slate-600">{step.description}</p>
+              <div className="mt-auto rounded-2xl bg-muted/80 px-4 py-3 text-xs font-medium text-slate-600">
+                Livrable : {step.deliverable}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section id="preuves" className="container space-y-12">
+        <div className="flex flex-col gap-4 text-center">
+          <Badge className="self-center bg-primary/10 text-primary">Résultats</Badge>
+          <h2 className="text-3xl font-semibold text-text">Des preuves concrètes</h2>
+          <p className="mx-auto max-w-3xl text-base text-slate-600">
+            Les directions marketing et growth que nous accompagnons constatent des gains rapides sur la performance et la
+            conformité.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {testimonials.map((testimonial) => (
+            <Card key={testimonial.author} className="h-full text-left">
               <div className="flex flex-col gap-4">
-                {feature.icon}
-                <div>
-                  <h3 className="text-xl font-semibold text-text">{feature.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600">{feature.description}</p>
+                <svg
+                  className="h-8 w-8 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 10h3v7H5v-5a4 4 0 014-4" />
+                  <path d="M16 10h3v7h-5v-5a4 4 0 014-4" />
+                </svg>
+                <p className="text-base text-text">“{testimonial.quote}”</p>
+                <div className="text-sm font-medium text-slate-600">
+                  {testimonial.author}
+                  <span className="block text-xs font-normal text-slate-500">{testimonial.role}</span>
                 </div>
               </div>
             </Card>
           ))}
         </div>
-        <div className="mt-12 flex flex-col items-center gap-4 text-center text-sm text-slate-500 sm:flex-row sm:justify-center">
-          <span className="font-medium text-slate-600">Déjà utilisé par…</span>
-          <div className="flex flex-wrap justify-center gap-3">
-            {["E-commerce", "Agences", "Dropshipping"].map((label) => (
-              <Badge key={label}>{label}</Badge>
-            ))}
+      </section>
+
+      <section className="container">
+        <Card className="flex flex-col items-center gap-6 bg-primary text-center text-primary-foreground">
+          <Badge className="bg-white/15 text-primary-foreground">Prêt à accélérer ?</Badge>
+          <h2 className="max-w-2xl text-3xl font-semibold">
+            Planifiez une session de débrief avec un expert pour prioriser vos prochaines actions marketing.
+          </h2>
+          <p className="max-w-xl text-base text-primary-foreground/80">
+            Nous synthétisons les opportunités, cadrons l’impact attendu et définissons le plan d’exécution avec vos équipes en
+            moins de deux heures.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button href="/analyser" size="lg" variant="secondary" className="bg-white text-primary">
+              Réserver un audit
+            </Button>
+            <Button
+              href="/tarifs"
+              size="lg"
+              className="bg-white/10 text-primary-foreground hover:bg-white/20"
+            >
+              Consulter nos offres
+            </Button>
           </div>
-        </div>
+        </Card>
       </section>
     </div>
   );

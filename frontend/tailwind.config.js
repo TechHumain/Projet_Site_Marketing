@@ -17,8 +17,12 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1E3A8A",
-          foreground: "#FFFFFF",
+          DEFAULT: "#1F3AE0",
+          foreground: "#F8FAFC",
+        },
+        accent: {
+          DEFAULT: "#38BDF8",
+          foreground: "#0B1120",
         },
         muted: "#F5F7FB",
         card: "#FFFFFF",
@@ -26,8 +30,16 @@ module.exports = {
         text: "#0F172A",
       },
       borderRadius: {
-        lg: "12px",
-        DEFAULT: "12px",
+        lg: "18px",
+        DEFAULT: "18px",
+      },
+      boxShadow: {
+        elevated: "0 20px 45px -25px rgba(31, 58, 224, 0.45)",
+      },
+      backgroundImage: {
+        "hero-radial":
+          "radial-gradient(120% 120% at 85% 15%, rgba(56, 189, 248, 0.28) 0%, rgba(30, 58, 138, 0.18) 40%, transparent 65%)",
+        "section-fade": "linear-gradient(180deg, #FFFFFF 0%, #F5F7FB 100%)",
       },
     },
   },
