@@ -440,7 +440,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container space-y-12">
+      <section id="preuves" className="container space-y-12">
         <div className="flex flex-col gap-4 text-center">
           <Badge className="self-center bg-primary/10 text-primary">Résultats</Badge>
           <h2 className="text-3xl font-semibold text-text">Des résultats mesurables dès les premières semaines</h2>
