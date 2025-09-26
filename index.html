@@ -32,46 +32,90 @@
 
       <section class="hero" id="top">
         <div class="hero__background" aria-hidden="true">
-          <div class="hero__shape hero__shape--one"></div>
-          <div class="hero__shape hero__shape--two"></div>
+          <div class="hero__orb hero__orb--one"></div>
+          <div class="hero__orb hero__orb--two"></div>
+          <div class="hero__orb hero__orb--three"></div>
         </div>
-        <div class="hero__content">
-          <p class="hero__eyebrow">Audit marketing premium</p>
-          <h2>Identifiez vos leviers de croissance en moins de 7 jours</h2>
-          <p>
-            Nos experts data, acquisition et CRM analysent l'intégralité de votre expérience client pour révéler les actions à
-            plus fort impact. Profitez d'une feuille de route priorisée, prête à activer par vos équipes.
-          </p>
-          <div class="hero__actions">
-            <a class="btn-primary" href="#contact">Demander un audit personnalisé</a>
-            <a class="btn-outline" href="#services">Explorer nos expertises</a>
+        <div class="hero__layout">
+          <div class="hero__content">
+            <span class="hero__badge">Audit marketing premium</span>
+            <h2>Identifiez vos leviers de croissance en moins de 7 jours</h2>
+            <p>
+              Nos experts data, acquisition et CRM analysent l'intégralité de votre expérience client pour révéler les actions à
+              plus fort impact. Profitez d'une feuille de route priorisée, prête à activer par vos équipes.
+            </p>
+            <ul class="hero__highlights">
+              <li>Feuille de route data-driven priorisée</li>
+              <li>Benchmark sectoriel &amp; projections chiffrées</li>
+              <li>Activation accompagnée par une équipe senior</li>
+            </ul>
+            <div class="hero__actions">
+              <a class="btn-primary" href="#contact">Demander un audit personnalisé</a>
+              <a class="btn-outline" href="#services">Explorer nos expertises</a>
+            </div>
+            <dl class="hero-stats" aria-label="Chiffres clés de nos accompagnements">
+              <div>
+                <dt>+37%</dt>
+                <dd>de ROI moyen après 90 jours</dd>
+              </div>
+              <div>
+                <dt>92%</dt>
+                <dd>de clients renouvellent la mission</dd>
+              </div>
+              <div>
+                <dt>4,9/5</dt>
+                <dd>satisfaction moyenne des équipes</dd>
+              </div>
+            </dl>
           </div>
-          <dl class="hero-stats" aria-label="Chiffres clés de nos accompagnements">
-            <div>
-              <dt>+37%</dt>
-              <dd>de ROI moyen après 90 jours</dd>
+          <div class="hero__visual" aria-hidden="true">
+            <div class="hero-card hero-card--primary">
+              <span class="hero-card__label">Projection de croissance</span>
+              <p class="hero-card__value">+128%</p>
+              <p class="hero-card__hint">Pipeline qualifié sur 6 mois</p>
+              <ul class="hero-card__tags">
+                <li>Acquisition</li>
+                <li>CRO</li>
+                <li>CRM</li>
+              </ul>
             </div>
-            <div>
-              <dt>92%</dt>
-              <dd>de clients renouvellent la mission</dd>
+            <div class="hero-card hero-card--secondary">
+              <div class="hero-card__progress">
+                <span class="hero-card__progress-label">Score d'opportunités</span>
+                <div class="progress-meter" role="presentation">
+                  <span class="progress-meter__value">82%</span>
+                  <div class="progress-meter__track">
+                    <span class="progress-meter__fill"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-card__team">
+                <div class="avatar-stack" aria-hidden="true">
+                  <span class="avatar">AB</span>
+                  <span class="avatar">LM</span>
+                  <span class="avatar">SG</span>
+                </div>
+                <p>Équipe senior dédiée à votre compte</p>
+              </div>
             </div>
-            <div>
-              <dt>4,9/5</dt>
-              <dd>satisfaction moyenne des équipes</dd>
-            </div>
-          </dl>
+          </div>
         </div>
       </section>
 
       <section class="trust-bar" aria-label="Références clients">
         <div class="trust-bar__inner">
           <span class="trust-bar__eyebrow">Ils nous font confiance</span>
-          <ul class="trust-badges">
-            <li>Scale-ups SaaS</li>
-            <li>E-commerce premium</li>
-            <li>Banques &amp; assurances</li>
-            <li>Acteurs B2B industriels</li>
-          </ul>
+          <div class="trust-bar__logos" role="list">
+            <span role="listitem">Alan</span>
+            <span role="listitem">BackMarket</span>
+            <span role="listitem">Qonto</span>
+            <span role="listitem">Mirakl</span>
+            <span role="listitem">Swile</span>
+          </div>
+          <div class="trust-bar__metric">
+            <strong>+120 projets</strong>
+            <span>accompagnés sur les 24 derniers mois</span>
+          </div>
         </div>
       </section>
 
@@ -166,9 +210,55 @@
           </div>
         </section>
 
-        <section class="section">
+        <section class="section section--insights">
+          <div class="section__header">
+            <h2>Des résultats mesurables dès les premières semaines</h2>
+            <p>
+              Nous combinons l'analyse data, l'intelligence marché et l'opérationnel pour accélérer durablement votre
+              acquisition et la fidélisation.
+            </p>
+          </div>
+          <div class="insight-grid">
+            <article class="insight-card">
+              <header>
+                <span class="insight-card__eyebrow">Acquisition</span>
+                <strong>+64%</strong>
+              </header>
+              <p>Augmentation moyenne du volume de leads qualifiés dès le premier trimestre.</p>
+              <ul>
+                <li>Restructuration media buying multi-plateformes</li>
+                <li>Création d'actifs créatifs testables en continu</li>
+              </ul>
+            </article>
+            <article class="insight-card">
+              <header>
+                <span class="insight-card__eyebrow">Conversion</span>
+                <strong>-32%</strong>
+              </header>
+              <p>Réduction constatée du coût d'acquisition client sur les parcours clés.</p>
+              <ul>
+                <li>Expérimentations CRO priorisées par potentiel</li>
+                <li>Optimisation du copywriting et des offres</li>
+              </ul>
+            </article>
+            <article class="insight-card">
+              <header>
+                <span class="insight-card__eyebrow">Fidélisation</span>
+                <strong>+48 pts</strong>
+              </header>
+              <p>Gain moyen de Customer Lifetime Value pour les comptes accompagnés.</p>
+              <ul>
+                <li>Personnalisation des scénarios CRM &amp; marketing automation</li>
+                <li>Reporting prédictif sur mesure</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section--highlight">
           <div class="highlight-card" role="complementary">
             <div>
+              <span class="highlight-card__badge">Enablement</span>
               <h2>Un accompagnement pensé pour vos équipes</h2>
               <p>
                 Des livrables synthétiques, des recommandations priorisées et des ateliers opérationnels pour accélérer votre
@@ -203,7 +293,38 @@
                 <li>Accès à un plan d'action priorisé</li>
               </ul>
             </div>
-            <a class="btn-primary" href="mailto:contact@audit-marketing.fr">Planifier un rendez-vous</a>
+            <form class="cta-form" action="https://formspree.io/f/mwkjakdl" method="post">
+              <div class="form-grid">
+                <label>
+                  Nom et prénom
+                  <input type="text" name="name" autocomplete="name" required />
+                </label>
+                <label>
+                  Email professionnel
+                  <input type="email" name="email" autocomplete="email" required />
+                </label>
+                <label>
+                  Entreprise
+                  <input type="text" name="company" autocomplete="organization" />
+                </label>
+                <label>
+                  Objectif principal
+                  <select name="goal" required>
+                    <option value="" disabled selected>Choisissez un objectif</option>
+                    <option value="acquisition">Accélérer l'acquisition</option>
+                    <option value="conversion">Optimiser la conversion</option>
+                    <option value="fidelisation">Renforcer la fidélisation</option>
+                    <option value="data">Structurer la data</option>
+                  </select>
+                </label>
+              </div>
+              <label class="cta-form__textarea">
+                Décrivez vos enjeux
+                <textarea name="context" rows="4" placeholder="Parlez-nous de vos objectifs et des défis actuels"></textarea>
+              </label>
+              <button type="submit" class="btn-primary">Réserver un créneau</button>
+              <p class="cta-form__note">Aucun engagement. Nous revenons vers vous sous 24h ouvrées.</p>
+            </form>
           </div>
         </section>
       </main>
