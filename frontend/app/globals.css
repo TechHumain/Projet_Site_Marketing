@@ -119,12 +119,15 @@
   }
 
   .btn-meet {
-    @apply inline-flex items-center rounded-full border border-brand/30 bg-brand/10 px-5 py-2.5 text-sm font-semibold text-brand-dark transition-colors duration-200 focus-visible:outline-none;
+    @apply inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none;
+    color: var(--brand-primary-dark);
+    border-color: rgba(99, 102, 241, 0.25);
+    background-color: rgba(99, 102, 241, 0.12);
   }
 
   .btn-meet:hover,
   .btn-meet:focus-visible {
-    @apply bg-brand/20;
+    background-color: rgba(99, 102, 241, 0.2);
   }
 }
 
