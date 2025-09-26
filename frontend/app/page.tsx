@@ -118,20 +118,161 @@ const methodology = [
   },
 ];
 
-const testimonials = [
+const insights = [
   {
-    quote:
-      "Nous avons réduit de 32 % notre coût d'acquisition tout en améliorant la conformité de nos campagnes display. Les livrables sont clairs et directement actionnables.",
-    author: "Claire Dupont",
-    role: "Head of Growth – AssurOne",
+    eyebrow: "Acquisition",
+    value: "+64%",
+    description: "Augmentation moyenne du volume de leads qualifiés dès le premier trimestre.",
+    bullets: [
+      "Restructuration media buying multi-plateformes",
+      "Création d'actifs créatifs testables en continu",
+    ],
   },
   {
-    quote:
-      "PubLégalFR a transformé notre stratégie CRM. Nous avons enfin une vision segmentée de notre base et des scénarios automatisés qui convertissent.",
-    author: "Louis Martin",
-    role: "CMO – RetailUp",
+    eyebrow: "Conversion",
+    value: "-32%",
+    description: "Réduction constatée du coût d'acquisition client sur les parcours clés.",
+    bullets: [
+      "Expérimentations CRO priorisées par potentiel",
+      "Optimisation du copywriting et des offres",
+    ],
+  },
+  {
+    eyebrow: "Fidélisation",
+    value: "+48 pts",
+    description: "Gain moyen de Customer Lifetime Value pour les comptes accompagnés.",
+    bullets: [
+      "Personnalisation des scénarios CRM & marketing automation",
+      "Reporting prédictif sur mesure",
+    ],
   },
 ];
+
+const ctaBullets = [
+  "Diagnostic gratuit de vos enjeux actuels",
+  "Projection de gains personnalisée",
+  "Accès à un plan d'action priorisé",
+];
+
+interface InsightCardProps {
+  eyebrow: string;
+  value: string;
+  description: string;
+  bullets: string[];
+}
+
+function InsightCard({ eyebrow, value, description, bullets }: InsightCardProps) {
+  return (
+    <Card className="h-full gap-4 rounded-2xl border-slate-200/60 bg-white/95 p-8 text-left shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated">
+      <header className="flex items-baseline justify-between gap-4">
+        <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+          {eyebrow}
+        </span>
+        <strong className="text-3xl font-semibold text-primary">{value}</strong>
+      </header>
+      <p className="text-sm text-slate-600">{description}</p>
+      <ul className="space-y-2 text-sm text-slate-600">
+        {bullets.map((bullet) => (
+          <li key={bullet} className="flex items-start gap-2">
+            <span className="mt-1 inline-flex h-1.5 w-1.5 flex-none rounded-full bg-primary" aria-hidden="true" />
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
+    </Card>
+  );
+}
+
+function EnablementHighlight() {
+  return (
+    <div className="grid gap-6 rounded-[28px] border border-white/30 bg-gradient-to-tr from-indigo-500/95 via-indigo-600/95 to-indigo-700/95 px-10 py-12 text-slate-100 shadow-[0_32px_70px_rgba(79,70,229,0.25)]">
+      <div className="space-y-4">
+        <span className="inline-flex items-center gap-2 rounded-full bg-slate-900/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+          Enablement
+        </span>
+        <h2 className="text-3xl font-semibold leading-tight text-white md:text-[2.4rem]">
+          Un accompagnement pensé pour vos équipes
+        </h2>
+        <p className="max-w-2xl text-base text-slate-200/85">
+          Des livrables synthétiques, des recommandations priorisées et des ateliers opérationnels pour accélérer votre passage à l'action.
+        </p>
+      </div>
+      <ul className="space-y-3 text-sm text-slate-100/90">
+        <li>Tableaux de bord prêts à l'emploi</li>
+        <li>Templates de campagnes &amp; automations</li>
+        <li>Suivi mensuel sur mesure</li>
+      </ul>
+    </div>
+  );
+}
+
+function ContactPanel() {
+  return (
+    <div className="grid gap-6 rounded-[28px] border border-slate-800/60 bg-slate-900/80 p-8 shadow-[0_32px_70px_rgba(15,23,42,0.35)] backdrop-blur md:p-10 lg:grid-cols-[1fr_minmax(0,1.05fr)]">
+      <div className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/5 p-6 text-slate-100 md:p-7">
+        <p className="text-sm text-slate-100/90">
+          Écrivez-nous à <a href="mailto:contact@audit-marketing.fr" className="font-semibold text-white underline">contact@audit-marketing.fr</a> ou choisissez un créneau dans notre agenda partagé. Nous revenons vers vous sous 24h ouvrées.
+        </p>
+        <ul className="space-y-2 text-sm text-slate-100/85">
+          {ctaBullets.map((bullet) => (
+            <li key={bullet} className="flex items-start gap-2">
+              <span className="mt-1 inline-flex h-1.5 w-1.5 flex-none rounded-full bg-accent" aria-hidden="true" />
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <form
+        className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-left md:p-7"
+        action="https://formspree.io/f/mwkjakdl"
+        method="post"
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          <label className="cta-field">
+            Nom et prénom
+            <input className="cta-input" type="text" name="name" autoComplete="name" required />
+          </label>
+          <label className="cta-field">
+            Email professionnel
+            <input className="cta-input" type="email" name="email" autoComplete="email" required />
+          </label>
+          <label className="cta-field">
+            Entreprise
+            <input className="cta-input" type="text" name="company" autoComplete="organization" />
+          </label>
+          <label className="cta-field">
+            Objectif principal
+            <select className="cta-input" name="goal" required defaultValue="">
+              <option value="" disabled>
+                Choisissez un objectif
+              </option>
+              <option value="acquisition">Accélérer l'acquisition</option>
+              <option value="conversion">Optimiser la conversion</option>
+              <option value="fidelisation">Renforcer la fidélisation</option>
+              <option value="data">Structurer la data</option>
+            </select>
+          </label>
+        </div>
+        <label className="cta-field">
+          Décrivez vos enjeux
+          <textarea
+            className="cta-input min-h-[9.5rem]"
+            name="context"
+            rows={4}
+            placeholder="Parlez-nous de vos objectifs et des défis actuels"
+          />
+        </label>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <Button type="submit" size="lg" className="w-full shadow-[0_24px_45px_rgba(15,23,42,0.3)] sm:w-auto">
+            Réserver un créneau
+          </Button>
+          <p className="cta-note">Aucun engagement. Nous revenons vers vous sous 24h ouvrées.</p>
+        </div>
+      </form>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -254,66 +395,36 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="preuves" className="container space-y-12">
+      <section className="container space-y-12">
         <div className="flex flex-col gap-4 text-center">
           <Badge className="self-center bg-primary/10 text-primary">Résultats</Badge>
-          <h2 className="text-3xl font-semibold text-text">Des preuves concrètes</h2>
+          <h2 className="text-3xl font-semibold text-text">Des résultats mesurables dès les premières semaines</h2>
           <p className="mx-auto max-w-3xl text-base text-slate-600">
-            Les directions marketing et growth que nous accompagnons constatent des gains rapides sur la performance et la
-            conformité.
+            Nous combinons l'analyse data, l'intelligence marché et l'opérationnel pour accélérer durablement votre acquisition
+            et la fidélisation.
           </p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.author} className="h-full text-left">
-              <div className="flex flex-col gap-4">
-                <svg
-                  className="h-8 w-8 text-primary"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M7 10h3v7H5v-5a4 4 0 014-4" />
-                  <path d="M16 10h3v7h-5v-5a4 4 0 014-4" />
-                </svg>
-                <p className="text-base text-text">“{testimonial.quote}”</p>
-                <div className="text-sm font-medium text-slate-600">
-                  {testimonial.author}
-                  <span className="block text-xs font-normal text-slate-500">{testimonial.role}</span>
-                </div>
-              </div>
-            </Card>
+        <div className="grid gap-6 md:grid-cols-3">
+          {insights.map((insight) => (
+            <InsightCard key={insight.eyebrow} {...insight} />
           ))}
         </div>
       </section>
 
       <section className="container">
-        <Card className="flex flex-col items-center gap-6 bg-primary text-center text-primary-foreground">
-          <Badge className="bg-white/15 text-primary-foreground">Prêt à accélérer ?</Badge>
-          <h2 className="max-w-2xl text-3xl font-semibold">
-            Planifiez une session de débrief avec un expert pour prioriser vos prochaines actions marketing.
-          </h2>
-          <p className="max-w-xl text-base text-primary-foreground/80">
-            Nous synthétisons les opportunités, cadrons l’impact attendu et définissons le plan d’exécution avec vos équipes en
-            moins de deux heures.
+        <EnablementHighlight />
+      </section>
+
+      <section id="contact" className="container space-y-12">
+        <div className="flex flex-col gap-4 text-center">
+          <Badge className="self-center bg-primary/10 text-primary">Contact</Badge>
+          <h2 className="text-3xl font-semibold text-text">Parlons de votre prochaine étape</h2>
+          <p className="mx-auto max-w-3xl text-base text-slate-600">
+            Programmez un échange de 30 minutes avec un consultant senior pour identifier comment l'audit peut soutenir vos
+            objectifs de croissance.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href="/analyser" size="lg" variant="secondary" className="bg-white text-primary">
-              Réserver un audit
-            </Button>
-            <Button
-              href="/tarifs"
-              size="lg"
-              className="bg-white/10 text-primary-foreground hover:bg-white/20"
-            >
-              Consulter nos offres
-            </Button>
-          </div>
-        </Card>
+        </div>
+        <ContactPanel />
       </section>
     </div>
   );
