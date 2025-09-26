@@ -2,17 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light dark;
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply min-h-screen bg-muted text-text antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-text;
+  }
+
+  p {
+    @apply leading-relaxed text-slate-600;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
 }
 
-body {
-  min-height: 100vh;
-  background-color: rgb(249 250 251 / 1);
-  color: rgb(17 24 39 / 1);
-}
+@layer utilities {
+  .shadow-soft {
+    @apply shadow-md shadow-slate-900/5;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
+  .ring-focus {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
 }
