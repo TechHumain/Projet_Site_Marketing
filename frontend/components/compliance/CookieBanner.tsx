@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { ConsentCategories, ConsentCookie } from '../../types/consent';
+import { Button } from "../ui/button";
+import { ConsentCategories, ConsentCookie } from "../../../types/consent";
 
-const COOKIE_NAME = 'pp_consent';
+const COOKIE_NAME = "pp_consent";
 const ONE_DAY_IN_SECONDS = 60 * 60 * 24;
 const COOKIE_MAX_AGE = ONE_DAY_IN_SECONDS * 365;
 
@@ -15,31 +16,32 @@ const DEFAULT_PREFERENCES: ConsentCategories = {
 };
 
 function readConsentCookie(): ConsentCookie | null {
-  if (typeof document === 'undefined') {
+  if (typeof document === "undefined") {
     return null;
   }
 
-  const cookies = document.cookie.split(';');
+  const cookies = document.cookie ? document.cookie.split(";") : [];
 
   for (const cookie of cookies) {
-    const [rawName, ...rest] = cookie.trim().split('=');
+    const [rawName, ...rest] = cookie.trim().split("=");
+
     if (rawName === COOKIE_NAME) {
       try {
-        const value = decodeURIComponent(rest.join('='));
+        const value = decodeURIComponent(rest.join("="));
         const parsed = JSON.parse(value) as ConsentCookie;
 
         if (
           parsed &&
           parsed.categories &&
-          typeof parsed.categories.necessary === 'boolean' &&
-          typeof parsed.categories.analytics === 'boolean' &&
-          typeof parsed.categories.marketing === 'boolean' &&
-          typeof parsed.timestamp === 'string'
+          typeof parsed.categories.necessary === "boolean" &&
+          typeof parsed.categories.analytics === "boolean" &&
+          typeof parsed.categories.marketing === "boolean" &&
+          typeof parsed.timestamp === "string"
         ) {
           return parsed;
         }
       } catch (error) {
-        console.warn('Impossible de lire le cookie de consentement :', error);
+        console.warn("Impossible de lire le cookie de consentement :", error);
       }
     }
   }
@@ -48,7 +50,7 @@ function readConsentCookie(): ConsentCookie | null {
 }
 
 function writeConsentCookie(value: ConsentCookie) {
-  if (typeof document === 'undefined') {
+  if (typeof document === "undefined") {
     return;
   }
 
@@ -58,10 +60,10 @@ function writeConsentCookie(value: ConsentCookie) {
 
 async function sendConsentToServer(consent: ConsentCookie) {
   try {
-    await fetch('/api/consent', {
-      method: 'POST',
+    await fetch("/api/consent", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(consent),
     });
@@ -78,6 +80,51 @@ function mergePreferences(preferences: ConsentCategories): ConsentCategories {
   };
 }
 
+function useConsentPreferences() {
+  const [preferences, setPreferences] = useState<ConsentCategories>(DEFAULT_PREFERENCES);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [hasStoredConsent, setHasStoredConsent] = useState(false);
+
+  useEffect(() => {
+    const stored = readConsentCookie();
+
+    if (stored) {
+      setPreferences(mergePreferences(stored.categories));
+      setHasStoredConsent(true);
+    }
+
+    setIsInitialized(true);
+  }, []);
+
+  const updatePreference = useCallback((key: keyof ConsentCategories, value: boolean) => {
+    setPreferences((previous) => ({
+      ...previous,
+      [key]: key === "necessary" ? true : value,
+    }));
+  }, []);
+
+  const persistPreferences = useCallback((updated: ConsentCategories) => {
+    const consent: ConsentCookie = {
+      categories: mergePreferences(updated),
+      timestamp: new Date().toISOString(),
+    };
+
+    writeConsentCookie(consent);
+    void sendConsentToServer(consent);
+
+    setPreferences(consent.categories);
+    setHasStoredConsent(true);
+  }, []);
+
+  return {
+    preferences,
+    updatePreference,
+    persistPreferences,
+    isInitialized,
+    hasStoredConsent,
+  } as const;
+}
+
 interface CheckboxOptionProps {
   id: string;
   label: string;
@@ -89,7 +136,7 @@ interface CheckboxOptionProps {
 
 function CheckboxOption({ id, label, description, checked, onChange, disabled }: CheckboxOptionProps) {
   return (
-    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
+    <div className="flex items-start gap-3">
       <input
         id={id}
         type="checkbox"
@@ -98,39 +145,49 @@ function CheckboxOption({ id, label, description, checked, onChange, disabled }:
         onChange={(event) => onChange?.(event.target.checked)}
         disabled={disabled}
         aria-disabled={disabled}
-        style={{ marginTop: '0.35rem' }}
+        className="mt-1.5 h-5 w-5 shrink-0 rounded border border-border text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       />
-      <label htmlFor={id} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-        <span style={{ fontWeight: 600 }}>{label}</span>
-        <span style={{ color: '#4b5563', fontSize: '0.875rem', lineHeight: 1.3 }}>{description}</span>
+      <label htmlFor={id} className="flex flex-col gap-1 text-left">
+        <span className="font-semibold text-text">{label}</span>
+        <span className="text-sm text-slate-500">{description}</span>
       </label>
     </div>
   );
 }
 
 export function CookieBanner() {
-  const [isReady, setIsReady] = useState(false);
+  const { preferences, updatePreference, persistPreferences, isInitialized, hasStoredConsent } =
+    useConsentPreferences();
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [preferences, setPreferences] = useState<ConsentCategories>(DEFAULT_PREFERENCES);
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (typeof document === 'undefined') {
+    if (!isInitialized) {
       return;
     }
 
-    const stored = readConsentCookie();
-
-    if (stored) {
-      setPreferences(mergePreferences(stored.categories));
-      setIsVisible(false);
-    } else {
+    if (!hasStoredConsent) {
       setIsVisible(true);
     }
+  }, [hasStoredConsent, isInitialized]);
 
-    setIsReady(true);
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    const handleOpen = () => {
+      setIsExpanded(false);
+      setIsVisible(true);
+    };
+
+    document.addEventListener("cookie-banner:open", handleOpen);
+
+    return () => {
+      document.removeEventListener("cookie-banner:open", handleOpen);
+    };
   }, []);
 
   const focusableSelectors = useMemo(
@@ -164,7 +221,7 @@ export function CookieBanner() {
     const last = focusable[focusable.length - 1] ?? node;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Tab') {
+      if (event.key === "Tab") {
         if (focusable.length === 0) {
           event.preventDefault();
           node.focus();
@@ -180,84 +237,53 @@ export function CookieBanner() {
           event.preventDefault();
           (first ?? last).focus();
         }
-      } else if (event.key === 'Escape') {
+      } else if (event.key === "Escape") {
         event.preventDefault();
       }
     };
 
     first.focus();
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
       previouslyFocusedElement.current?.focus?.();
     };
   }, [focusableSelectors, isVisible]);
 
   const closeBanner = useCallback(
     (updatedPreferences: ConsentCategories) => {
-      const consent: ConsentCookie = {
-        categories: mergePreferences(updatedPreferences),
-        timestamp: new Date().toISOString(),
-      };
-
-      writeConsentCookie(consent);
-      void sendConsentToServer(consent);
-
-      setPreferences(consent.categories);
+      persistPreferences(updatedPreferences);
       setIsVisible(false);
     },
-    []
+    [persistPreferences]
   );
 
   const handleAcceptAll = useCallback(() => {
-    closeBanner({ necessary: true, analytics: true, marketing: true });
+    void closeBanner({ necessary: true, analytics: true, marketing: true });
   }, [closeBanner]);
 
   const handleRejectAll = useCallback(() => {
-    closeBanner({ necessary: true, analytics: false, marketing: false });
+    void closeBanner({ necessary: true, analytics: false, marketing: false });
   }, [closeBanner]);
 
   const handleSavePreferences = useCallback(() => {
-    closeBanner(preferences);
+    void closeBanner(preferences);
   }, [closeBanner, preferences]);
 
   const toggleExpanded = useCallback(() => {
     setIsExpanded((previous) => !previous);
   }, []);
 
-  const updatePreference = useCallback((key: keyof ConsentCategories, value: boolean) => {
-    setPreferences((previous) => ({ ...previous, [key]: key === 'necessary' ? true : value }));
-  }, []);
-
-  if (!isReady || !isVisible) {
+  if (!isInitialized || !isVisible) {
     return null;
   }
-
-  const buttonStyle: CSSProperties = {
-    flex: 1,
-    padding: '0.75rem 1rem',
-    borderRadius: '0.5rem',
-    border: 'none',
-    fontWeight: 600,
-    cursor: 'pointer',
-    fontSize: '1rem',
-  };
 
   return (
     <div
       role="presentation"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 50,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        backgroundColor: 'rgba(17, 24, 39, 0.55)',
-        padding: '1.5rem',
-      }}
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 sm:items-center sm:p-6"
     >
       <div
         ref={dialogRef}
@@ -266,43 +292,26 @@ export function CookieBanner() {
         aria-labelledby="cookie-banner-title"
         aria-describedby="cookie-banner-description"
         tabIndex={-1}
-        style={{
-          width: '100%',
-          maxWidth: '32rem',
-          backgroundColor: '#ffffff',
-          borderRadius: '1rem',
-          padding: '1.5rem',
-          boxShadow: '0 25px 50px -12px rgba(30, 41, 59, 0.4)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.25rem',
-        }}
+        className="flex w-full max-w-xl flex-col gap-6 rounded-2xl bg-white p-6 shadow-elevated focus:outline-none"
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <h2 id="cookie-banner-title" style={{ fontSize: '1.5rem', fontWeight: 700 }}>
+        <div className="space-y-3">
+          <h2 id="cookie-banner-title" className="text-2xl font-bold text-text">
             Gestion des cookies
           </h2>
-          <p id="cookie-banner-description" style={{ color: '#374151', lineHeight: 1.5 }}>
+          <p id="cookie-banner-description" className="text-base leading-relaxed text-slate-600">
             Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic et personnaliser le contenu.
             Vous pouvez accepter tous les cookies, les refuser ou personnaliser vos préférences.
           </p>
         </div>
 
-        {isExpanded && (
+        {isExpanded ? (
           <fieldset
             aria-labelledby="cookie-preferences-legend"
-            style={{
-              border: '1px solid #e5e7eb',
-              borderRadius: '0.75rem',
-              padding: '1rem',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-            }}
+            className="space-y-4 rounded-xl border border-border/70 bg-section-fade p-4"
           >
             <legend
               id="cookie-preferences-legend"
-              style={{ fontWeight: 700, padding: '0 0.25rem', fontSize: '1rem' }}
+              className="px-1 text-base font-semibold text-text"
             >
               Préférences de confidentialité
             </legend>
@@ -318,60 +327,52 @@ export function CookieBanner() {
               label="Cookies de mesure d'audience"
               description="Nous aident à comprendre comment notre site est utilisé."
               checked={preferences.analytics}
-              onChange={(value) => updatePreference('analytics', value)}
+              onChange={(value) => updatePreference("analytics", value)}
             />
             <CheckboxOption
               id="cookie-marketing"
               label="Cookies marketing"
               description="Permettent de vous proposer des contenus et offres adaptés."
               checked={preferences.marketing}
-              onChange={(value) => updatePreference('marketing', value)}
+              onChange={(value) => updatePreference("marketing", value)}
             />
-            <button
+            <Button
               type="button"
+              variant="primary"
+              size="md"
+              className="mt-2 w-full sm:w-auto"
               onClick={handleSavePreferences}
-              style={{
-                ...buttonStyle,
-                alignSelf: 'flex-start',
-                backgroundColor: '#10b981',
-                color: '#ffffff',
-                width: '100%',
-              }}
             >
               Enregistrer mes choix
-            </button>
+            </Button>
           </fieldset>
-        )}
+        ) : null}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <button
-              type="button"
-              onClick={handleAcceptAll}
-              style={{ ...buttonStyle, backgroundColor: '#2563eb', color: '#ffffff' }}
-            >
+        <div className="space-y-3">
+          <div className="space-y-3">
+            <Button type="button" variant="primary" size="lg" className="w-full" onClick={handleAcceptAll}>
               Accepter tout
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="primary"
+              size="lg"
+              className="w-full bg-slate-900 hover:bg-slate-900/90"
               onClick={handleRejectAll}
-              style={{ ...buttonStyle, backgroundColor: '#111827', color: '#ffffff' }}
             >
               Refuser tout
-            </button>
+            </Button>
           </div>
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="md"
+            className="w-full text-slate-700"
             onClick={toggleExpanded}
             aria-expanded={isExpanded}
-            style={{
-              ...buttonStyle,
-              backgroundColor: '#f3f4f6',
-              color: '#1f2937',
-            }}
           >
-            {isExpanded ? 'Masquer les préférences' : 'Personnaliser'}
-          </button>
+            {isExpanded ? "Masquer les préférences" : "Personnaliser"}
+          </Button>
         </div>
       </div>
     </div>

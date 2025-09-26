@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { cn } from "../lib/utils";
 import { Navbar } from "../components/ui/navbar";
+import { CookieBanner } from "../components/compliance/CookieBanner";
 import { Button } from "../components/ui/button";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={cn(inter.className, "min-h-screen bg-section-fade text-text antialiased")}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
+          <CookieBanner />
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
