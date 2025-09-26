@@ -1,6 +1,15 @@
-import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
+
+const heroHighlights = [
+  "Feuille de route data-driven priorisée",
+  "Benchmark sectoriel & projections chiffrées",
+  "Activation accompagnée par une équipe senior",
+];
+
+const heroTags = ["Acquisition", "CRO", "CRM"];
+
+const heroTeam = ["AB", "LM", "SG"];
 
 const metrics = [
   { value: "+37%", label: "de ROI moyen après 90 jours" },
@@ -138,40 +147,76 @@ export default function Home() {
     <div className="space-y-24 pb-24">
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-hero-radial" aria-hidden="true" />
-        <div className="container relative flex flex-col items-center gap-16 py-24 text-center">
-          <div className="flex max-w-4xl flex-col items-center gap-6">
-            <Badge className="bg-primary/10 text-primary">Audit marketing premium</Badge>
-            <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
-              Identifiez vos leviers de croissance en moins de 7 jours
-            </h1>
-            <p className="max-w-3xl text-lg text-slate-600">
-              Nos experts data, acquisition et CRM analysent l'intégralité de votre expérience client pour révéler les actions
-              à plus fort impact. Vous repartez avec une feuille de route priorisée, prête à activer par vos équipes.
-            </p>
-            <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:justify-center">
+        <div className="container relative grid gap-12 py-24 text-center lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:text-left">
+          <div className="flex flex-col gap-6">
+            <span className="hero-badge self-center lg:self-start">Audit marketing premium</span>
+            <div className="flex flex-col gap-4">
+              <h1 className="text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+                Identifiez vos leviers de croissance en moins de 7 jours
+              </h1>
+              <p className="mx-auto max-w-2xl text-lg text-slate-600 lg:mx-0">
+                Nos experts data, acquisition et CRM analysent l'intégralité de votre expérience client pour révéler les
+                actions à plus fort impact. Vous repartez avec une feuille de route priorisée, prête à activer par vos
+                équipes.
+              </p>
+            </div>
+            <ul className="hero-highlights mx-auto max-w-2xl lg:mx-0">
+              {heroHighlights.map((highlight) => (
+                <li key={highlight} className="hero-highlight">
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
               <Button href="/analyser" size="lg" className="w-full sm:w-auto">
                 Demander un audit personnalisé
               </Button>
-              <Button
-                href="/historique"
-                size="lg"
-                variant="secondary"
-                className="w-full sm:w-auto"
-              >
+              <Button href="/historique" size="lg" variant="secondary" className="w-full sm:w-auto">
                 Découvrir un rapport type
               </Button>
             </div>
+            <dl className="hero-stats mx-auto lg:mx-0" aria-label="Chiffres clés de nos accompagnements">
+              {metrics.map((metric) => (
+                <div key={metric.label}>
+                  <dt>{metric.value}</dt>
+                  <dd>{metric.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          <div className="grid w-full gap-6 sm:grid-cols-3">
-            {metrics.map((metric) => (
-              <Card key={metric.label} className="bg-white/80 text-left">
-                <div className="flex flex-col gap-2">
-                  <span className="text-3xl font-semibold text-primary">{metric.value}</span>
-                  <p className="text-sm text-slate-600">{metric.label}</p>
+          <div className="hero-visual" aria-hidden="true">
+            <div className="hero-card hero-card--primary">
+              <span className="hero-card__label">Projection de croissance</span>
+              <p className="hero-card__value">+128%</p>
+              <p className="hero-card__hint">Pipeline qualifié sur 6 mois</p>
+              <ul className="hero-card__tags">
+                {heroTags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="hero-card hero-card--secondary">
+              <div className="hero-card__progress">
+                <span className="hero-card__progress-label">Score d'opportunités</span>
+                <div className="hero-progress" role="presentation">
+                  <span className="hero-progress__value">82%</span>
+                  <div className="hero-progress__track">
+                    <span className="hero-progress__fill" style={{ width: "82%" }} />
+                  </div>
                 </div>
-              </Card>
-            ))}
+              </div>
+              <div className="hero-card__team">
+                <div className="hero-avatar-stack" aria-hidden="true">
+                  {heroTeam.map((initials) => (
+                    <span key={initials} className="hero-avatar">
+                      {initials}
+                    </span>
+                  ))}
+                </div>
+                <p>Équipe senior dédiée à votre compte</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
