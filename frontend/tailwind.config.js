@@ -24,10 +24,17 @@ module.exports = {
           DEFAULT: "#38BDF8",
           foreground: "#0B1120",
         },
+        brand: {
+          DEFAULT: "#6366F1",
+          dark: "#4338CA",
+        },
         muted: "#F5F7FB",
         card: "#FFFFFF",
         border: "#E5E7EB",
         text: "#0F172A",
+      },
+      fontFamily: {
+        heading: ["var(--font-heading)", "Space Grotesk", "Inter", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "18px",
@@ -40,6 +47,7 @@ module.exports = {
         "hero-radial":
           "radial-gradient(120% 120% at 85% 15%, rgba(56, 189, 248, 0.28) 0%, rgba(30, 58, 138, 0.18) 40%, transparent 65%)",
         "section-fade": "linear-gradient(180deg, #FFFFFF 0%, #F5F7FB 100%)",
+        "brand-gradient": "linear-gradient(135deg, #6366F1 0%, #4338CA 100%)",
       },
     },
   },

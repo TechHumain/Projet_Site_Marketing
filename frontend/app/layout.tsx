@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 
 import { cn } from "../lib/utils";
@@ -9,6 +9,7 @@ import { Button } from "../components/ui/button";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
   title: "PubLégalFR – Audit marketing premium",
@@ -21,7 +22,7 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="fr" className="h-full bg-white">
-      <body className={cn(inter.className, "min-h-screen bg-section-fade text-text antialiased")}>
+      <body className={cn(inter.className, spaceGrotesk.variable, "min-h-screen bg-section-fade text-text antialiased")}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">{children}</main>
