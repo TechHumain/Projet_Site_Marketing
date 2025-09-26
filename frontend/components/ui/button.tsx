@@ -6,17 +6,15 @@ import type { ButtonHTMLAttributes } from "react";
 
 import { cn } from "../../lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary";
 type ButtonSize = "md" | "lg";
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-lg font-medium transition-colors ring-focus disabled:pointer-events-none disabled:opacity-60";
+  "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-  secondary:
-    "border border-border bg-white text-text hover:bg-muted",
-  ghost: "text-slate-600 hover:bg-muted",
+  secondary: "border border-border bg-white text-text hover:bg-muted",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

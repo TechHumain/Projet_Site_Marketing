@@ -31,10 +31,10 @@
 
 @layer utilities {
   .shadow-soft {
-    @apply shadow-md shadow-slate-900/5;
+    @apply shadow-md;
   }
+}
 
-  .ring-focus {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
-  }
+:where(button, a).[class*="focus-visible"] {
+  @apply ring-2 ring-primary ring-offset-2;
 }
