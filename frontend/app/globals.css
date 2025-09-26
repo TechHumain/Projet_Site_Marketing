@@ -78,6 +78,136 @@
   }
 }
 
+@layer components {
+  .hero-badge {
+    @apply relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary;
+    background: rgba(79, 70, 229, 0.12);
+  }
+
+  .hero-badge::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #1f3ae0, #38bdf8);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+  }
+
+  .hero-highlights {
+    @apply grid gap-3 text-sm text-slate-700;
+  }
+
+  .hero-highlight {
+    @apply relative flex items-center gap-3 rounded-2xl border border-primary/10 bg-primary/5 px-4 py-3 font-medium backdrop-blur;
+  }
+
+  .hero-highlight::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #1f3ae0, #38bdf8);
+    box-shadow: 0 0 0 6px rgba(31, 58, 224, 0.14);
+  }
+
+  .hero-stats {
+    @apply grid gap-4 sm:grid-cols-3;
+  }
+
+  .hero-stats div {
+    @apply rounded-3xl border border-slate-200/60 bg-white/80 p-6 text-left shadow-[0_20px_45px_rgba(15,23,42,0.1)];
+  }
+
+  .hero-stats dt {
+    @apply text-3xl font-semibold text-primary;
+  }
+
+  .hero-stats dd {
+    @apply mt-2 text-sm text-slate-600;
+  }
+
+  .hero-visual {
+    @apply grid gap-6;
+  }
+
+  .hero-card {
+    @apply flex flex-col gap-4 rounded-3xl border border-white/10 bg-slate-900/80 p-8 text-slate-100 shadow-[0_25px_60px_rgba(15,23,42,0.25)];
+    backdrop-filter: blur(12px);
+  }
+
+  .hero-card--primary {
+    background: linear-gradient(160deg, rgba(79, 70, 229, 0.92), rgba(30, 64, 175, 0.85));
+  }
+
+  .hero-card--secondary {
+    background: rgba(15, 23, 42, 0.82);
+  }
+
+  .hero-card__label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-slate-200/80;
+  }
+
+  .hero-card__value {
+    @apply text-4xl font-semibold tracking-tight text-slate-50;
+  }
+
+  .hero-card__hint {
+    @apply text-sm text-slate-200/80;
+  }
+
+  .hero-card__tags {
+    @apply flex flex-wrap gap-2 text-xs font-semibold;
+  }
+
+  .hero-card__tags li {
+    @apply rounded-full border border-white/20 bg-white/10 px-3 py-1;
+  }
+
+  .hero-card__progress {
+    @apply flex flex-col gap-3;
+  }
+
+  .hero-card__progress-label {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-slate-200/75;
+  }
+
+  .hero-progress {
+    @apply flex items-center gap-3;
+  }
+
+  .hero-progress__value {
+    @apply text-lg font-semibold text-slate-50;
+  }
+
+  .hero-progress__track {
+    @apply h-2 flex-1 overflow-hidden rounded-full bg-slate-200/20;
+  }
+
+  .hero-progress__fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #38bdf8, #1f3ae0);
+  }
+
+  .hero-card__team {
+    @apply mt-2 flex items-center gap-4 border-t border-white/10 pt-4 text-sm text-slate-200/75;
+  }
+
+  .hero-avatar-stack {
+    @apply flex items-center;
+  }
+
+  .hero-avatar {
+    @apply grid h-10 w-10 place-items-center rounded-full border border-white/40 bg-white/10 text-sm font-semibold tracking-[0.05em];
+    margin-left: -0.75rem;
+  }
+
+  .hero-avatar:first-child {
+    margin-left: 0;
+  }
+}
+
 :where(button, a).[class*="focus-visible"] {
   @apply ring-2 ring-primary ring-offset-2;
 }
