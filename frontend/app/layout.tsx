@@ -47,7 +47,7 @@ function Footer() {
             <Link
               key={item.href}
               href={item.href}
-              className="transition-colors ring-focus hover:text-primary"
+              className="transition-colors focus-visible:outline-none hover:text-primary"
             >
               {item.label}
             </Link>
@@ -57,9 +57,14 @@ function Footer() {
           <p className="text-sm text-slate-500">© {year} PubLégalFR. Tous droits réservés.</p>
           <Button
             type="button"
-            variant="ghost"
+            variant="secondary"
             size="md"
-            className="w-full justify-center border border-transparent bg-muted text-sm font-medium text-slate-600 hover:bg-muted sm:w-auto"
+            className="manage-cookies w-full justify-center text-sm font-medium text-slate-600 sm:w-auto"
+            onClick={() => {
+              if (typeof document !== "undefined") {
+                document.dispatchEvent(new CustomEvent("cookie-banner:open"));
+              }
+            }}
           >
             Gérer mes cookies
           </Button>

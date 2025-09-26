@@ -21,7 +21,7 @@ export function Navbar() {
         <div className="flex items-center gap-8">
           <Link
             href="/"
-            className="text-lg font-semibold text-text ring-focus"
+            className="text-lg font-semibold text-text focus-visible:outline-none"
             aria-label="PubLégalFR"
           >
             PubLégalFR
@@ -38,11 +38,12 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "transition-colors ring-focus",
+                    "transition-colors focus-visible:outline-none",
                     isActive
                       ? "text-primary underline decoration-2 underline-offset-8"
                       : "hover:text-primary",
                   )}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -53,7 +54,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/api/auth/signin"
-            className="text-sm font-medium text-slate-600 transition-colors ring-focus hover:text-primary"
+            className="text-sm font-medium text-slate-600 transition-colors focus-visible:outline-none hover:text-primary"
           >
             Connexion
           </Link>
